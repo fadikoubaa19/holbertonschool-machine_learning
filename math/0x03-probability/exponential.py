@@ -21,12 +21,8 @@ class Exponential:
                 raise ValueError('data must contain multiple values')
             self.lambtha = 1 / (sum(data) / len(data))
 
-    def pmf(self, x):
+    def pdf(self, x):
         """func calc PDF"""
-        if not isinstance(k, int):
-            x = int(k)
         if x < 0:
             return 0
-        else:
-            return (self.lambtha**k * Poisson.e**((-1) * self.lambtha))\
-                / Poisson.factorial(x)
+        return self.lambtha * Exponential.e**((-1) * self.lambtha * x)
