@@ -40,10 +40,23 @@ class Normal:
         z = self.z_score(x)
         return (1 / (self.stddev * (2 * Normal.pi)**.5))\
             * Normal.e**((-1/2) * z**2)
+
+    def poww(self, x):
+        """
+        param x
+        param self
+        """
+        o = (pow(x, 3))/3
+        t = (pow(x, 5)) / 10
+        th = (pow(x, 7))/42
+        f = (pow(x, 9))/216
+        return((2 / (Normal.pi ** 0.5)) * (x - o + t - th + f))
+
     def cdf(self, x):
         """Calculates the CDF for a given x-value
         x is the x-value
         Returns the CDF value for x
         """
-        z = self.z_score(x)
-        return 1/2 * (1 + Normal.erf(z / 2**.5)
+        z = (self.z_score(x))/(pow(2, 1/2))
+        res = 0.5*(1+self.poww(z))
+        return(res)
