@@ -41,7 +41,7 @@ class Poisson:
         s = 0
         for i in range(0, k+1):
             s += self.lambtha**a / Poisson.factorial(a)
-        return Poisson.exp**((-1) * self.lambtha) * s
+        return Poisson.e**((-1) * self.lambtha) * s
 
     @staticmethod
     def factorial(k):
