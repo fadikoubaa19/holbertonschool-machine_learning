@@ -26,3 +26,9 @@ class Exponential:
         if x < 0:
             return 0
         return self.lambtha * Exponential.e**((-1) * self.lambtha * x)
+
+    def cdf(self, x):
+        """func calc PDF"""
+        if x < 0:
+            return 0
+        return self.lambtha * Exponential.e**((-1) * self.lambtha * x)
