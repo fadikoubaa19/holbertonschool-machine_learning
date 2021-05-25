@@ -39,7 +39,7 @@ class Poisson:
         if k < 0:
             return 0
         s = 0
-        for i in range(0, k+1):
+        for a in range(0, k+1):
             s += self.lambtha**a / Poisson.factorial(a)
         return Poisson.e**((-1) * self.lambtha) * s
 
