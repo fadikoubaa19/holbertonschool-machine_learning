@@ -3,10 +3,11 @@
 
 
 class Exponential:
-    """distrubute exp
-    """
+    """distrubute exp"""
+
     e = 2.7182818285
     def __init__(self, data=None, lambtha=1.):
+
         """Initialisation"""
         if data is None:
             if lambtha <= 0:
@@ -19,6 +20,7 @@ class Exponential:
             if len(data) < 2:
                 raise ValueError('data must contain multiple values')
             self.lambtha = 1 / (sum(data) / len(data))
+
     def pmf(self, k):
         """func calc PDF"""
         if not isinstance(k, int):
