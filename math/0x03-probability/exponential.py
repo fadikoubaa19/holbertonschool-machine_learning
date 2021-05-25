@@ -31,4 +31,4 @@ class Exponential:
         """func calc PDF"""
         if x < 0:
             return 0
-        return self.lambtha * Exponential.e**((-1) * self.lambtha * x)
+        return 1 - Exponential.e**((-1) * self.lambtha * x)
