@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-
+""" confusion matrix function """
 import numpy as np
 
 
 def create_confusion_matrix(labels, logits):
-    """creates a confusion matrix"""
-    fml = np.zeros((labels.shape[1], labels.shape[1]))
-    fml = np.dot(labels.T, logits)
-    return fml
+    """ create confusion matrix """
+    return np.matmul(labels.T, logits)
