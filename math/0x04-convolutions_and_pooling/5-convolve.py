@@ -6,7 +6,7 @@ import numpy as np
 def convolve(images, kernels, padding='same', stride=(1, 1)):
     """normal_convolve"""
     m, inh, inw, c = images.shape
-    kh, kw, x, lm = kernels.shape
+    kh, kw, x, nc = kernels.shape
     f1, f2 = stride
 
     if padding == "valid":
@@ -44,7 +44,7 @@ def convolve(images, kernels, padding='same', stride=(1, 1)):
 
     for i in range(output_h):
         for j in range(output_w):
-            for k in range(lm):
+            for k in range(nc):
                 output[:, i, j, k] = np.sum(
                     kernels[:, :, :, k] *
                     _images[:, i * f1:i * f1 + kh, j * f2:j * f2 + kw],
