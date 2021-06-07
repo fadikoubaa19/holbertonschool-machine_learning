@@ -5,7 +5,7 @@ import numpy as np
 
 def convolve_grayscale_padding(images, kernel, padding):
     """convolution on grayscale images"""
-   m, input_h, input_w = images.shape
+    m, inh, inw = images.shape
     a, b = kernel.shape
     f1, f2 = padding
 
