@@ -7,19 +7,19 @@ def convolve(images, kernels, padding='same', stride=(1, 1)):
     """normal_convolve"""
     m, inh, inw, c = images.shape
     kh, kw, x, nc = kernels.shape
-    f1, f2 = stride
+    ph, pw = stride
 
     if padding == "valid":
-        output_h = (inh - kh) // f1 + 1
-        output_w = (inw - kw) // f2 + 1
+        output_h = (inh - kh) // ph + 1
+        output_w = (inw - kw) // pw + 1
         top, bot, lft, rgt = (0, 0, 0, 0)
 
     elif padding == "same":
         output_h = inh
         output_w = inw
 
-        padding_h = int(((inh - 1) * f1 + kh - inh) / 2) + 1
-        padding_w = int(((inw - 1) * f2 + kw - inw) / 2) + 1
+        padding_h = int(((inh - 1) * ph + kh - inh) / 2) + 1
+        padding_w = int(((inw - 1) * pw + kw - inw) / 2) + 1
 
         top = padding_h
         bot = padding_h
@@ -28,8 +28,8 @@ def convolve(images, kernels, padding='same', stride=(1, 1)):
 
     else:
         ph, pw = padding
-        output_h = (inh - kh + 2 * ph) // f1 + 1
-        output_w = (inw - kw + 2 * pw) // f2 + 1
+        output_h = (inh - kh + 2 * ph) // ph + 1
+        output_w = (inw - kw + 2 * pw) // pw + 1
         top, bot = (ph, ph)
         lft, rgt = (pw, pw)
 
@@ -39,7 +39,6 @@ def convolve(images, kernels, padding='same', stride=(1, 1)):
         mode="constant",
         constant_values=0
     )
-
     output = np.zeros((m, output_h, output_w, c))
 
     for i in range(output_h):
