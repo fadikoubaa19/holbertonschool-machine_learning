@@ -6,7 +6,7 @@ import numpy as np
 def convolve(images, kernels, padding='same', stride=(1, 1)):
     """Performs a convolution"""
     m, input_h, input_w, c = images.shape
-    kh, kw, fd, nc = kernels.shape
+    kh, kw, kc, nc = kernels.shape
     sh, sw = stride
 
     if padding == "valid":
