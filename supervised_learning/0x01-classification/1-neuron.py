@@ -32,5 +32,3 @@ class Neuron:
     @property
     def A(self):
         return self.__A
-
-
