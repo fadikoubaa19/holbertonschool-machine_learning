@@ -82,18 +82,6 @@ class NeuralNetwork:
         self.__b1 += - alpha * np.sum(dz1, axis=1, keepdims=True) / m
 
     def train(self, X, Y, iterations=5000, alpha=0.05):
-        """train network function"""
-        if type(iterations) != int:
-            raise TypeError("iterations must be an integer")
-        if iterations <= 0:
-            raise ValueError("iterations must be a positive integer")
-        if type(alpha) != float:
-            raise TypeError("alpha must be a float")
-        if alpha <= 0:
-            raise ValueError("alpha must be positive")
-        for i in range(iterations):
-
-    def train(self, X, Y, iterations=5000, alpha=0.05):
         """function to train network"""
         if type(iterations) != int:
             raise TypeError("iterations must be an integer")
