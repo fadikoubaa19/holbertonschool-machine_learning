@@ -68,5 +68,5 @@ class NeuralNetwork:
         """calc the evaluate neural"""
         self.forward_prop(X)
         pred = np.where(self.A2 >= 0.5, 1, 0)
-        c = self.c(Y, self.A2)
-        return pred, c
+        cost = self.cost(Y, self.A2)
+        return pred, cost
