@@ -60,7 +60,6 @@ class NeuralNetwork:
 
     def cost(self, Y, A):
         """Calculates the cost using logisitic"""
-        j = len(Y[0])
-        n = (-1/m) * (np.matmul(np.log(A), Y.T)
-                      + np.matmul(np.log(1.0000001 - A), (1 - Y).T))
-        return np.sum(n)
+        c = - (np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)))
+        c /= Y.shape[1]
+        return c
