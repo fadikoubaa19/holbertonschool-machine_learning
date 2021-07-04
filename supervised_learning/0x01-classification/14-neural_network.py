@@ -83,12 +83,12 @@ class NeuralNetwork:
 
     def train(self, X, Y, iterations=5000, alpha=0.05):
         """function to train network"""
-        if type(iterations) != int:
+        if type(iterations) is not int:
             raise TypeError("iterations must be an integer")
         if iterations < 0:
             raise ValueError("iterations must be a positive integer")
 
-        if type(alpha) != float:
+        if type(alpha) is not float:
             raise TypeError("alpha must be a float")
         if alpha < 0:
             raise ValueError("alpha must be positive")
