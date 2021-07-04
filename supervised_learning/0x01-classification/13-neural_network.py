@@ -74,10 +74,9 @@ class NeuralNetwork:
     def gradient_descent(self, X, Y, A1, A2, alpha=0.05):
         """ Calculate gradient decent """
         m = Y.shape[1]
-        z2 = A2 - Y
-        sig = A1 * (1 - A1)
-        z1 = np.matmul(self.W2.T, z2) * d_sig
-        self.__W1 -= alpha * np.matmul(z1, X.T) / m
-        self.__b1 -= alpha * np.sum(z1, axis=1, keepdims=True) / m
-        self.__W2 -= alpha * np.matmul(z2, A1.T) / m
-        self.__b2 -= alpha * np.sum(z2, axis=1, keepdims=True) / m
+        dz2 = A2 - Y
+        dz1 = np.dot(self.W2.T, dz2) * A1 * (1 - A1)
+        self.__W2 += - alpha * np.dot(dz2, A1.T) / m
+        self.__b2 += - alpha * np.sum(dz2, axis=1) / m
+        self.__W1 += - alpha * np.dot(dz1, X.T) / m
+        self.__b1 += - alpha * np.sum(dz1, axis=1, keepdims=True) / m
