@@ -42,8 +42,14 @@ class Neuron:
         cost function
         :param A:
         :param Y:
-        :return: the cost(c)
+        :return: the cost
         """
         c = - (np.sum(Y * np.log(A) + (1 - Y) * np.log(1.0000001 - A)))
         c /= Y.shape[1]
         return c
+
+    def evaluate(self, X, Y):
+        """evaluate the neuron's pred"""
+        A = self.forward_prop(X)
+        c = self.cost(Y, A)
+        return np.where(A >= 0.5, 1, 0), c
