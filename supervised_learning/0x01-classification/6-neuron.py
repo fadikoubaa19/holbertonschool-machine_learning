@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 """
 function 1-neruon
