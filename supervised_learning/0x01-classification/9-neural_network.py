@@ -28,30 +28,24 @@ class NeuralNetwork:
 
     @property
     def W1(self):
-        """W1 prop"""
         return self.__W1
 
     @property
     def b1(self):
-        """ADD b1 prop"""
         return self.__b1
 
     @property
     def A1(self):
-        """ADD A1 prop"""
         return self.__A1
 
     @property
     def W2(self):
-        """ADD W2 prop"""
         return self.__W2
 
     @property
     def b2(self):
-        """ADD b2 prop"""
         return self.__b2
 
     @property
     def A2(self):
-        """ADD A2 prop"""
         return self.__A2
