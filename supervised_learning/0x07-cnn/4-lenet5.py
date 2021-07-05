@@ -12,7 +12,7 @@ def lenet5(x, y):
     cv_lyr1 = tf.layers.Conv2D(filters=6,
                                kernel_size=(5, 5),
                                padding='same',
-                               kernel_initializer=it__,
+                               kernel_initializer=it_,
                                activation=tf.nn.relu)(x)
     pool_lyr_2 = tf.layers.MaxPooling2D(pool_size=(2, 2),
                                         strides=(2, 2))(cv_lyr1)
