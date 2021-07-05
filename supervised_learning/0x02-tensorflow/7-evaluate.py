@@ -9,8 +9,8 @@ import tensorflow as tf
 def evaluate(X, Y, save_path):
     """evaluation of neural network"""
     with tf.Session() as sess:
-        salide = tf.train.import_meta_graph("{}.meta".format(save_path))
-        salide.restore(sess, save_path)
+        salid = tf.train.import_meta_graph("{}.meta".format(save_path))
+        salid.restore(sess, save_path)
 
         x = tf.get_collection("x")[0]
         y = tf.get_collection("y")[0]
