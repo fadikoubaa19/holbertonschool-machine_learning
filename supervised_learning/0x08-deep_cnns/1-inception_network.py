@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" function icep_network """
+""" inception_network"""
 
 import tensorflow.keras as K
 
@@ -7,14 +7,12 @@ inception_block = __import__('0-inception_block').inception_block
 
 
 def inception_network():
-    """
-    function that build incp net
-    """
+    """ the function of inception network   """
     initializer = K.initializers.he_normal(seed=None)
 
     X = K.Input(shape=(224, 224, 3))
 
-    my_block = K.layers.Conv2D(filters=64,
+    my_layer = K.layers.Conv2D(filters=64,
                                kernel_size=(7, 7),
                                strides=(2, 2),
                                padding='same',
@@ -22,66 +20,66 @@ def inception_network():
                                kernel_initializer=initializer,
                                )(X)
 
-    my_block = K.layers.MaxPool2D(pool_size=(3, 3),
+    my_layer = K.layers.MaxPool2D(pool_size=(3, 3),
                                   padding='same',
                                   strides=(2, 2)
-                                  )(my_block)
+                                  )(my_layer)
 
-    my_block = K.layers.Conv2D(filters=64,
+    my_layer = K.layers.Conv2D(filters=64,
                                kernel_size=(1, 1),
                                strides=(1, 1),
                                padding='same',
                                activation='relu',
                                kernel_initializer=initializer,
-                               )(my_block)
+                               )(my_layer)
 
-    my_block = K.layers.Conv2D(filters=192,
+    my_layer = K.layers.Conv2D(filters=192,
                                kernel_size=(3, 3),
                                strides=(1, 1),
                                padding='same',
                                activation='relu',
                                kernel_initializer=initializer,
-                               )(my_block)
+                               )(my_layer)
 
-    my_block = K.layers.MaxPool2D(pool_size=(3, 3),
+    my_layer = K.layers.MaxPool2D(pool_size=(3, 3),
                                   padding='same',
                                   strides=(2, 2)
-                                  )(my_block)
+                                  )(my_layer)
 
-    my_block = inception_block(my_block, [64, 96, 128, 16, 32, 32])
+    my_layer = inception_block(my_layer, [64, 96, 128, 16, 32, 32])
 
-    my_block = inception_block(my_block, [128, 128, 192, 32, 96, 64])
+    my_layer = inception_block(my_layer, [128, 128, 192, 32, 96, 64])
 
-    my_block = K.layers.MaxPool2D(pool_size=(3, 3),
+    my_layer = K.layers.MaxPool2D(pool_size=(3, 3),
                                   padding='same',
                                   strides=(2, 2)
-                                  )(my_block)
+                                  )(my_layer)
 
-    my_block = inception_block(my_block, [192, 96, 208, 16, 48, 64])
-    my_block = inception_block(my_block, [160, 112, 224, 24, 64, 64])
-    my_block = inception_block(my_block, [128, 128, 256, 24, 64, 64])
-    my_block = inception_block(my_block, [112, 144, 288, 32, 64, 64])
-    my_block = inception_block(my_block, [256, 160, 320, 32, 128, 128])
+    my_layer = inception_block(my_layer, [192, 96, 208, 16, 48, 64])
+    my_layer = inception_block(my_layer, [160, 112, 224, 24, 64, 64])
+    my_layer = inception_block(my_layer, [128, 128, 256, 24, 64, 64])
+    my_layer = inception_block(my_layer, [112, 144, 288, 32, 64, 64])
+    my_layer = inception_block(my_layer, [256, 160, 320, 32, 128, 128])
 
-    my_block = K.layers.MaxPool2D(pool_size=(3, 3),
+    my_layer = K.layers.MaxPool2D(pool_size=(3, 3),
                                   padding='same',
                                   strides=(2, 2)
-                                  )(my_block)
+                                  )(my_layer)
 
-    my_block = inception_block(my_block, [256, 160, 320, 32, 128, 128])
-    my_block = inception_block(my_block, [384, 192, 384, 48, 128, 128])
+    my_layer = inception_block(my_layer, [256, 160, 320, 32, 128, 128])
+    my_layer = inception_block(my_layer, [384, 192, 384, 48, 128, 128])
 
-    my_block = K.layers.AveragePooling2D(pool_size=(7, 7),
+    my_layer = K.layers.AveragePooling2D(pool_size=(7, 7),
                                          padding='same'
-                                         )(my_block)
+                                         )(my_layer)
 
-    my_block = K.layers.Dropout(rate=0.4)(my_block)
+    my_layer = K.layers.Dropout(rate=0.4)(my_layer)
 
-    my_block = K.layers.Dense(units=1000,
+    my_layer = K.layers.Dense(units=1000,
                               activation='softmax',
                               kernel_initializer=initializer,
-                              )(my_block)
+                              )(my_layer)
 
-    model = K.models.Model(inputs=X, outputs=my_l)
+    model = K.models.Model(inputs=X, outputs=my_layer)
 
     return model
