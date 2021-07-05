@@ -57,19 +57,19 @@ def inception_network():
                                   strides=(2, 2)
                                   )(my_block)
 
-    my_block = inception_block(my_l, [192, 96, 208, 16, 48, 64])
-    my_block = inception_block(my_l, [160, 112, 224, 24, 64, 64])
-    my_block = inception_block(my_l, [128, 128, 256, 24, 64, 64])
-    my_block = inception_block(my_l, [112, 144, 288, 32, 64, 64])
-    my_block = inception_block(my_l, [256, 160, 320, 32, 128, 128])
+    my_block = inception_block(my_block, [192, 96, 208, 16, 48, 64])
+    my_block = inception_block(my_block, [160, 112, 224, 24, 64, 64])
+    my_block = inception_block(my_block, [128, 128, 256, 24, 64, 64])
+    my_block = inception_block(my_block, [112, 144, 288, 32, 64, 64])
+    my_block = inception_block(my_block, [256, 160, 320, 32, 128, 128])
 
     my_block = K.layers.MaxPool2D(pool_size=(3, 3),
                                   padding='same',
                                   strides=(2, 2)
                                   )(my_block)
 
-    my_block = inception_block(my_l, [256, 160, 320, 32, 128, 128])
-    my_block = inception_block(my_l, [384, 192, 384, 48, 128, 128])
+    my_block = inception_block(my_block, [256, 160, 320, 32, 128, 128])
+    my_block = inception_block(my_block, [384, 192, 384, 48, 128, 128])
 
     my_block = K.layers.AveragePooling2D(pool_size=(7, 7),
                                          padding='same'
