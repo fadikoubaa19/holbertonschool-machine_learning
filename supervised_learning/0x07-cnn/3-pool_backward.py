@@ -25,7 +25,7 @@ def pool_backward(dA, A_prev, kernel_shape,
                                               init:end,
                                               init1:end1,
                                               k])
-                        mask = np.where(A_prev[z,
+                        mask = np.where(A_prev[a,
                                                init:end,
                                                init1:end1,
                                                k] == value, 1, 0)
