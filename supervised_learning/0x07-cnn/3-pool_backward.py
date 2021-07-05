@@ -33,6 +33,6 @@ def pool_backward(dA, A_prev, kernel_shape,
                     elif mode == 'avg':
                         mask = np.ones(kernel_shape) * (dA[a, i, j, k] /
                                                         (kh * kw))
-                    dA_prev[a, init:h_end,
+                    dA_prev[a, init:end,
                             init1:end1, k] += mask
     return dA_prev
