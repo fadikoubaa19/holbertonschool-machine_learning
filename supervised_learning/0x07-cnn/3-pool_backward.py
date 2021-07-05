@@ -27,7 +27,7 @@ def pool_backward(dA, A_prev, kernel_shape,
                                               k])
                         mask = np.where(A_prev[z,
                                                init:end,
-                                               init:end1,
+                                               init1:end1,
                                                k] == value, 1, 0)
                         mask = mask * dA[a, i, j, k]
                     elif mode == 'avg':
