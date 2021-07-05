@@ -35,7 +35,7 @@ def lenet5(x, y):
     sfmx_ = tf.contrib.layers.fully_connected(inputs=fc_lyr_6,
                                               num_outputs=10,
                                               activation_fn=None,
-                                              weights_initializer=it__)
+                                              weights_initializer=it_)
     sfmx_lyr = tf.nn.softmax(sfmx_)
     losses = tf.losses.softmax_cross_entropy(onehot_labels=y, logits=sfmx_)
     predictions = tf.equal(tf.argmax(sfmx_lyr, 1), tf.argmax(y, 1))
