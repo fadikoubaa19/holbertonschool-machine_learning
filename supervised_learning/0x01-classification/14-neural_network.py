@@ -82,17 +82,16 @@ class NeuralNetwork:
         self.__b1 += - alpha * np.sum(dz1, axis=1, keepdims=True) / m
 
     def train(self, X, Y, iterations=5000, alpha=0.05):
-        """training function"""
-        if type(iterations) is not int:
+        """function to train network"""
+        if type(iterations) != int:
             raise TypeError("iterations must be an integer")
-        if iterations < 0:
+        if iterations <= 0:
             raise ValueError("iterations must be a positive integer")
-
-        if type(alpha) is not float:
+        if type(alpha) != float:
             raise TypeError("alpha must be a float")
-        if alpha < 0:
+        if alpha <= 0:
             raise ValueError("alpha must be positive")
         for i in range(iterations):
-            self.__A1, self.__A2 = self.forward_prop(X)
+            self.forward_prop(X)
             self.gradient_descent(X, Y, self.__A1, self.__A2, alpha)
         return self.evaluate(X, Y)
