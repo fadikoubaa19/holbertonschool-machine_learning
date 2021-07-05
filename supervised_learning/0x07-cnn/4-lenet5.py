@@ -22,7 +22,7 @@ def lenet5(x, y):
                                kernel_initializer=it_,
                                activation=tf.nn.relu)(pool_lyr_2)
     pool_lyr_4 = tf.layers.MaxPooling2D(pool_size=(2, 2),
-                                        strides=(2, 2))(cv_lyr3)
+                                        strides=(2, 2))(mv_lyr3)
     flatten5 = tf.layers.Flatten()(pool_lyr_4)
     fc_lyr_5 = tf.contrib.layers.fully_connected(inputs=flatten5,
                                                  num_outputs=120,
