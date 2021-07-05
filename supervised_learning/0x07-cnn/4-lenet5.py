@@ -27,11 +27,11 @@ def lenet5(x, y):
     fc_lyr_5 = tf.contrib.layers.fully_connected(inputs=flatten5,
                                                  num_outputs=120,
                                                  activation_fn=tf.nn.relu,
-                                                 weights_initializer=it__)
+                                                 weights_initializer=it_)
     fc_lyr_6 = tf.contrib.layers.fully_connected(inputs=fc_lyr_5,
                                                  num_outputs=84,
                                                  activation_fn=tf.nn.relu,
-                                                 weights_initializer=it__)
+                                                 weights_initializer=it_)
     sfmx_ = tf.contrib.layers.fully_connected(inputs=fc_lyr_6,
                                               num_outputs=10,
                                               activation_fn=None,
