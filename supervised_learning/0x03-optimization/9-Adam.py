@@ -15,5 +15,5 @@ def update_variables_Adam(alpha, beta1, beta2, epsilon, var, grad, v, s, t):
     css = Ss / (1 - beta1 ** t)
     cSd = Sl / (1 - beta2 ** t)
 
-    a = var - alpha * (css_correct / ((cSd_correct ** (0.5)) + epsilon))
+    a = var - alpha * (css / ((cSd ** (0.5)) + epsilon))
     return a, Ss, Sl
