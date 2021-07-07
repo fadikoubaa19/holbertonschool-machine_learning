@@ -20,4 +20,4 @@ def dropout_gradient_descent(Y, weights, cache, alpha, keep_prob, L):
         weights[b] = weights[b] - alpha * s_1
         cl = 1 - Actv * Actv
         if i > 1:
-            rt = np.matmul(weigh[w].T, rt) * cl * cache[d] / keep_prob
+            rt = np.matmul(weigh_w[w].T, rt) * cl * cache[d] / keep_prob
