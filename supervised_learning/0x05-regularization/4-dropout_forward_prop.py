@@ -8,19 +8,19 @@ def dropout_gradient_descent(Y, weights, cache, alpha, keep_prob, L):
 
     cache = {}
     cache['A0'] = X
-    for i in range(1, j + 1):
-        w = weights['W' + str(i)]
-        b = weights['b' + str(i)]
-        c = cache['A' + str(i - 1)]
-        n = (np.matmul(w, c)) + b
-        dropout = np.random.binomial(1, keep_prob, size=n.shape)
+    for layer in range(1, L + 1):
+        W = weights['W' + str(layer)]
+        b = weights['b' + str(layer)]
+        A_prev = cache['A' + str(layer - 1)]
+        z = (np.matmul(W, A_prev)) + b
+        out = np.random.binomial(1, keep_prob, size=z.shape)
 
-        if i is j:
-            t = np.exp(n)
-            cache['A' + str(i)] = t / np.sum(t, axis=0, keepdims=True)
+        if layer is L:
+            n = np.exp(z)
+            cache['A' + str(layer)] = n / np.sum(t, axis=0, keepdims=True)
         else:
-            cache['A' + str(i)] = np.tanh(n)
-            cache['D' + str(i)] = dropout
-            cache['A' + str(i)] *= dropout
-            cache['A' + str(i)] /= keep_prob
+            cache['A' + str(layer)] = np.tanh(z)
+            cache['D' + str(layer)] = out
+            cache['A' + str(layer)] *= out
+            cache['A' + str(layer)] /= keep_prob
     return (cache)
