@@ -6,18 +6,21 @@ import numpy as np
 def dropout_gradient_descent(Y, weights, cache, alpha, keep_prob, L):
     """conducts forward propagation using Dropout"""
 
-    weigh_w = weights.copy()
-    rt = cache["A" + str(L)] - Y
-    m = len(Y[0])
-    for i in range(L, 0, -1):
-        b = "b" + str(i)
-        w = "W" + str(i)
-        d = "D" + str(i - 1)
-        Actv = cache["A" + str(i - 1)]
-        s_1 = (1 / m) * np.sum(rt, axis=1, keepdims=True)
-        s_2 = (1 / m) * np.matmul(rt, Actv.T)
-        weights[w] = weights[w] - alpha * s_2
-        weights[b] = weights[b] - alpha * s_1
-        cl = 1 - Actv * Actv
-        if i > 1:
-            rt = np.matmul(weigh_w[w].T, rt) * cl * cache[d] / keep_prob
+    cache = {}
+    cache['A0'] = X
+    for i in range(1, j + 1):
+        w = weights['W' + str(i)]
+        b = weights['b' + str(i)]
+        c = cache['A' + str(i - 1)]
+        n = (np.matmul(w, c)) + b
+        dropout = np.random.binomial(1, keep_prob, size=n.shape)
+
+        if i is j:
+            t = np.exp(n)
+            cache['A' + str(i)] = t / np.sum(t, axis=0, keepdims=True)
+        else:
+            cache['A' + str(i)] = np.tanh(n)
+            cache['D' + str(i)] = dropout
+            cache['A' + str(i)] *= dropout
+            cache['A' + str(i)] /= keep_prob
+    return (cache)
