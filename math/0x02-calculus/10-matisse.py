@@ -5,8 +5,7 @@
 def poly_derivative(poly):
 
     """function that Calculates the der of ply"""
-
-    if poly == [] or type(poly) != list or len(poly) == 0:
+    if poly == [] or type(poly) is not list or len(poly) is 0:
         return None
 
     for clss in poly:
