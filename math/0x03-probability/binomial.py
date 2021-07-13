@@ -49,11 +49,10 @@ class Binomial:
 
     def cdf(self, k):
         """ functio that cal the cdf"""
-        k = int(k)
-        if k < 0:
+        if not 0 <= k <= self.n:
             return 0
-
-        cdf = 0
-        for a in range(k + 1):
-            cdf += self.pmf(x)
-        return cdf
+        k = int(k)
+        result = 0
+        for i in range(k + 1):
+            result += self.pmf(i)
+        return result
