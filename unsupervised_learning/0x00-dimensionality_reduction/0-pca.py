@@ -27,10 +27,9 @@ def pca(X, var=0.95):
 
     # var is the cumulative sum of el_indice
     var = cum_sum[el_indice]
-
     map = len(var) + 1
-    # Return the weight of shape(d, nd) wheere nd is the new dim
 
+    # Return the weight of shape(d, nd) wheere nd is the new dim
     W = P3.T
     ps = W[:, 0:map]
     return ps
