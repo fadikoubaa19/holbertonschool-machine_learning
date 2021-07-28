@@ -20,8 +20,8 @@ def pca(X, ndim):
     # Using numpy (linear algebre)
     P1, P2, P3 = np.linalg.svd(means)
 
-    W = vh.T
-    Wr = W[:, 0:ndim]
+    W = P3.T
+    ps = W[:, 0:ndim]
 
-    T = means @ Wr
+    T = means @ ps
     return T
