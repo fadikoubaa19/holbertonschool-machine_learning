@@ -42,5 +42,5 @@ def likelihood(x, n, P):
     fs = np.math.factorial(n-x)
 
     # calc every probability in P
-    func = P ** x * (fn / (fx * fs)) * (1-P) ** (n-x)
-    return func
+    likelihood = P ** x * (fn / (fx * fs)) * (1-P) ** (n-x)
+    return likelihood
