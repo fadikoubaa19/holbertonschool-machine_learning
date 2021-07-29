@@ -50,6 +50,7 @@ def intersection(x, n, P, Pr):
     likeilhood = P ** x * (fn / (fx * fs)) * (1-P) ** (n-x)
     return likeilhood * Pr
 
+
 def marginal(x, n, P, Pr):
     """
     function to calc the sum
