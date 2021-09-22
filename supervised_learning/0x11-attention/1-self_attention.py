@@ -25,10 +25,10 @@ class SelfAttention(tf.keras.layers.Layer):
         points = self.V(tf.nn.tanh(self.W(values) + self.U(hidden_states)))
 
         # Turn numbers into probablities
-        sof = tf.nn.softmax(points, axis=1)
+        attention_weights = tf.nn.softmax(points, axis=1)
 
-        cal = sof * hidden_states
+        cal = attention_weights * hidden_states
         cal = tf.reduce_sum(cal, axis=1)
 
-        # Return y,s
+        # Return Context & weights
         return cal, attention_weights
