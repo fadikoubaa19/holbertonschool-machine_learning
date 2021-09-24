@@ -12,41 +12,33 @@ class EncoderBlock(tf.keras.layers.Layer):
 
     def __init__(self, dm, h, hidden, drop_rate=0.1):
         """
-        Create def __init__
-        param: --> self, dm, h, hidden, drop_rate
+        constructeur
+        :param dm:
+        :param h:
+        :param hidden:
+        :param drop_rate:
         """
+
         super(EncoderBlock, self).__init__()
         self.mha = MultiHeadAttention(dm, h)
-        self.dense_hidden = tf.keras.layers.Dense(units=hidden,
-                                                  activation='relu')
-        self.dense_output = tf.keras.layers.Dense(units=dm)
-
+        self.dense_hidden = tf.keras.layers.Dense(hidden, activation='relu')
+        self.dense_output = tf.keras.layers.Dense(dm)
         self.layernorm1 = tf.keras.layers.LayerNormalization(epsilon=1e-6)
         self.layernorm2 = tf.keras.layers.LayerNormalization(epsilon=1e-6)
-
         self.dropout1 = tf.keras.layers.Dropout(drop_rate)
         self.dropout2 = tf.keras.layers.Dropout(drop_rate)
-
-    def split_heads(self, x, batch_size):
-        """
-        split function
-        param: --> self, x, batch_size:
-        """
-        x = tf.reshape(x, (batch_size, -1, self.h, self.depth))
-        return tf.transpose(x, perm=[0, 2, 1, 3])
 
     def call(self, x, training, mask=None):
         """
         self, x, training
         """
-        attention, _ = self.mha(x, x, x, mask)
-        attention = self.dropout1(attention, training=training)
-        out1 = self.layernorm1(x + attention)
+        a_out, _ = self.mha(x, x, x, mask)
+        a_out = self.dropout1(a_out, training=training)
+        b_out = self.layernorm1(x + a_out)
+        output = self.dense_hidden(b_out)
+        output = self.dense_output(output)
 
-        hidden = self.dense_hidden(out1)
-        output = self.dense_output(hidden)
+        output = self.dropout2(output, training=training)
+        out_put2 = self.layernorm2(b_out + output)
 
-        dropout = self.dropout2(output, training=training)
-        output = self.layernorm2(out1 + dropout)
-
-        return output
+        return out_put2
