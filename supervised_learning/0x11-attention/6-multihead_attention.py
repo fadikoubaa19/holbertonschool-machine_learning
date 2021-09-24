@@ -8,52 +8,50 @@ sdp_attention = __import__('5-sdp_attention').sdp_attention
 
 
 class MultiHeadAttention(tf.keras.layers.Layer):
-    """
-    Create class MultiHeadAttention
-    """
+    """ descrption de classe"""
+
     def __init__(self, dm, h):
-        """function Init"""
-        super().__init__()
+        """
+        Def __init__
+        param : --> Self, dm, h
+        """
+
+        super(MultiHeadAttention, self).__init__()
         self.h = h
         self.dm = dm
-
-        self.depth = dm // h
-
+        self.depth = int(self.dm // self.h)
         self.Wq = tf.keras.layers.Dense(dm)
         self.Wk = tf.keras.layers.Dense(dm)
         self.Wv = tf.keras.layers.Dense(dm)
-
         self.linear = tf.keras.layers.Dense(dm)
 
-    def split_heads(self, x, batch_size):
+    def splitHeads(self, rt, batch):
         """
-        param : ---> self ,x ,batch_size
+        Split words
+        Param: --> self, rt, batch:
         """
-        x = tf.reshape(x, (batch_size, -1, self.h, self.depth))
-        return tf.transpose(x, perm=[0, 2, 1, 3])
+        rt = tf.reshape(rt, (batch, -1, self.h, self.depth))
+        return tf.transpose(rt, perm=[0, 2, 1, 3])
 
     def call(self, Q, K, V, mask):
         """
-        param: --> self, Q, K, V, mask:
+        Def call
+        param : --->self, Q, k, V,mask:
         """
-        batch_size = tf.shape(Q)[0]
 
-        q = self.Wq(Q)
-        k = self.Wk(K)
-        v = self.Wv(V)
+        Based_size = tf.shape(K)[0]
+        Q = self.Wq(Q)
+        K = self.Wk(K)
+        V = self.Wv(V)
 
-        q = self.split_heads(q, batch_size)
-        k = self.split_heads(k, batch_size)
-        v = self.split_heads(v, batch_size)
+        Q = self.splitHeads(Q, Based_size)
+        K = self.splitHeads(K, Based_size)
+        V = self.splitHeads(V, Based_size)
 
-        attention_one, attention_weights = sdp_attention(q, k, v, mask)
+        out, pu = sdp_attention(Q, K, V, mask)
 
-        attention_one = tf.transpose(attention_one,
-                                     perm=[0, 2, 1, 3])
+        out = tf.transpose(out, perm=[0, 2, 1, 3])
+        out = tf.reshape(out, (Based_size, -1, self.dm))
+        out = self.linear(out)
 
-        attention_two = tf.reshape(attention_one,
-                                   (batch_size, -1, self.dm))
-
-        output = self.linear(attention_one)
-
-        return output, attention_weights
+        return out, pu
