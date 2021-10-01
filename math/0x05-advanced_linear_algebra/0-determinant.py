@@ -1,49 +1,51 @@
 #!/usr/bin/env python3
-"""file ==> function determinant(matrix) """
+""" task 0 """
+
+
+def rows(x, row, matrix):
+    """
+    ---Def rows
+    param: ---> X,row,matrix
+    """
+    list = []
+    for r in row:
+        A = []
+        for c in range(len(matrix)):
+            if c != x:
+                A.append(r[c])
+        list.append(A)
+    return list
 
 
 def determinant(matrix):
     """
-    matrix : List of lists
-    list[[]] represent a 0x0 matrix
-    return the determiannt of matrix
+    --Function determ--
+    param:
+    --> matrix
     """
-
-    # if matrix is not list of lists raise type error included with msg
-    if type(matrix) is not list or len(matrix) == 0:
-        raise TypeError("matrix must be a list of lists")
-
-    # if matrix isn"t a square raise type error includded with msg
     if matrix == [[]]:
         return 1
-    for i in range(len(matrix)):
-        if type(matrix[i]) is not list:
+    if type(matrix) is not list or len(matrix) == 0:
+        raise TypeError("matrix must be a list of lists")
+    if len(matrix[0]) != len(matrix):
+        raise ValueError("matrix must be a square matrix")
+    for i in matrix:
+        if type(i) is not list:
             raise TypeError("matrix must be a list of lists")
-
-        # if length matrix diff of legnth[i] type raise error included with msg
-        if len(matrix) != len(matrix[i]):
+        elif len(i) != len(matrix):
             raise ValueError("matrix must be a square matrix")
-
-    # if length of matrix == 1 return matrix
     if len(matrix) == 1:
         return matrix[0][0]
-    # if length of matrix == 2 retrun matrix 0
+
     if len(matrix) == 2:
-        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+        a = (matrix[1][1] * matrix[0][0]) - (matrix[1][0] * matrix[0][1])
+        return a
+    determ = 0
+    for i, j in enumerate(matrix[0]):
+        row = [rw for rw in matrix[1:]]
+        mini_mat = []
+        mini_mat = rows(i, row, matrix)
 
-    mult = 1
-    deter = 0
-    for i in range(len(matrix)):
-        copy = []
-        for ele in matrix:
-            copy.append(ele.copy())
+        determ = determ + (j * (-1) ** i * determinant(mini_mat))
 
-        # return determ of matrix
-        new_matrix = copy[1:]
-        for delete in new_matrix:
-            del delete[i]
-
-        deter += matrix[0][i] * determinant(new_matrix) * deter
-        mult = mult * -1
-
-    return deter
+    return determ
