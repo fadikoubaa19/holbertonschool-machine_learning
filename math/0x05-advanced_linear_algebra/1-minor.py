@@ -25,18 +25,18 @@ def determinant(matrix):
     x = 1
     y = 0
     for a in range(len(matrix)):
-        cp = []
+        copy = []
         for OiO in matrix:
-            cp.append(OiO.cp())
+            copy.append(OiO.copy())
 
-        new_matrix = cp[1:]
+        new_matrix = copy[1:]
         for oIo in new_matrix:
             del oIo[a]
 
         y += matrix[0][a] * determinant(new_matrix) * x
         x = x * -1
 
-    return det
+    return determinant
 
 
 def minor(matrix):
@@ -63,12 +63,12 @@ def minor(matrix):
     for a in range(len(matrix)):
         L_L = []
         for OiO in range(len(matrix)):
-            cp = []
+            copy = []
             for XwX in matrix:
-                cp.append(XwX.copy())
-            del cp[a]
-            for oIo in cp:
+                copy.append(XwX.copy())
+            del copy[a]
+            for oIo in copy:
                 del oIo[OiO]
-            L_L.append(determinant(cp))
+            L_L.append(determinant(copy))
         new_list.append(L_L)
     return new_list
