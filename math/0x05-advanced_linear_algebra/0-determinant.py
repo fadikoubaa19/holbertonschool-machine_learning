@@ -10,7 +10,7 @@ def determinant(matrix):
     """
 
     # if matrix is not list of lists raise type error included with msg
-    if not isinstance(matrix, list):
+    if type(matrix) is not list or len(matrix) == 0:
         raise TypeError("matrix must be a list of lists")
 
     # if matrix isn"t a square raise type error includded with msg
