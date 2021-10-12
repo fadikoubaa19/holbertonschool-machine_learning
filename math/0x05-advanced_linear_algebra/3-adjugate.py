@@ -84,13 +84,13 @@ def adjugate(matrix):
     Function adjugate:
     param: --> matrix
     """
-    y = cofactor(matrix)
-    adjugate = []
+    coffar = cofactor(matrix)
+    adjacente = []
 
-    for a in range(len(y)):
+    for i in range(len(matrix)):
         copy = []
-        for b in range(len(y)):
-            copy.append(y[a][b])
-        adjugate.append(copy)
+        for j in range(len(matrix)):
+            copy.append(coffar[j][i])
+        adjacente.append(copy)
 
-    return adjugate
+    return adjacente
