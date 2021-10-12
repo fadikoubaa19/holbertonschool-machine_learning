@@ -84,16 +84,16 @@ def adjugate(matrix):
     Function adjugate:
     param: --> matrix
     """
-    coffar = cofactor(matrix)
-    adjacente = []
+    cof = cofactor(matrix)
+    det = []
 
     for i in range(len(matrix)):
         copy = []
         for j in range(len(matrix)):
-            copy.append(coffar[j][i])
-        adjacente.append(copy)
+            copy.append(cof[j][i])
+        det.append(copy)
 
-    return adjacente
+    return det
 
 
 def inverse(matrix):
@@ -101,14 +101,14 @@ def inverse(matrix):
     function inverse
     """
 
-    coffar = adjugate(matrix)
-    adjacente = determinant(matrix)
-    if adjacente == 0:
+    cof = adjugate(matrix)
+    det = determinant(matrix)
+    if det == 0:
         return None
     inv = []
-    for a in range(len(coffar)):
+    for a in range(len(cof)):
         aux = []
-        for b in range(len(coffar)):
-            aux.append(coffar[a][b] / adjacente)
+        for b in range(len(cof)):
+            aux.append(cof[a][b] / det)
         inv.append(aux)
     return inv
