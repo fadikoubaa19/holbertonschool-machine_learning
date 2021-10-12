@@ -24,7 +24,7 @@ def determinant(matrix):
 
     x = 1
     y = 0
-    for i in range(len(matrix)):
+    for a in range(len(matrix)):
         copy = []
         for elements in matrix:
             copy.append(elements.copy())
@@ -33,7 +33,7 @@ def determinant(matrix):
         for delete in new_matrix:
             del delete[a]
 
-        y += matrix[0][i] * determinant(new_matrix) * x
+        y += matrix[0][a] * determinant(new_matrix) * x
         x = x * -1
 
     return y
@@ -64,8 +64,8 @@ def cofactor(matrix):
         aux = []
         for b in range(len(matrix)):
             copy = []
-            for ele in matrix:
-                copy.append(ele.copy())
+            for elements in matrix:
+                copy.append(elements.copy())
             del copy[a]
             for delete in copy:
                 del delete[b]
