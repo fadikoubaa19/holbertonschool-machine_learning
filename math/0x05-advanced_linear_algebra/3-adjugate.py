@@ -64,8 +64,8 @@ def cofactor(matrix):
         aux = []
         for b in range(len(matrix)):
             copy = []
-            for elements in matrix:
-                copy.append(elements.copy())
+            for ele in matrix:
+                copy.append(ele.copy())
             del copy[a]
             for delete in copy:
                 del delete[b]
