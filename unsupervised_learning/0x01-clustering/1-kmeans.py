@@ -34,4 +34,3 @@ def kmeans(X, k, iterations=1000):
             break
 
     return vari, init
-
