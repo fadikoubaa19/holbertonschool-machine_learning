@@ -10,24 +10,23 @@ def absorbing(P):
     function absorbing: param: p:
     """
 
-    if type(P) is not np.ndarray or len(P.shape) != 2:
-        return False
-    if np.sum(P, axis=1).all() != 1:
+    if ((type(P) is not np.ndarray or P.ndim != 2 or
+         P.shape[0] != P.shape[1] or np.any(P < 0)
+         or not np.all(np.isclose(P.sum(axis=1), 1)))):
         return None
-    n = P.shape[0]
-    if n != P.shape[1]:
-        return False
-    shap = np.shap(P)
-    if (shap == 1).all():
-        return True
-    land = np.where(shap == 1)
-    if len(land[0]) == 0:
-        return False
-    res = shap == 1
-    for i in range(n):
-        for j in range(n):
-            if P[i][j] > 0 and res[j]:
-                res[i] = 1
-    if res.all() == 1:
-        return True
-    return False
+
+    P = P.copy()
+    idx = np.ndarray(P.shape[0])
+
+    while True:
+        prev = idx.copy()
+        idx = np.any(P == 1, axis=0)
+
+        if idx.all():
+            return True
+
+        if np.all(idx == prev):
+            return False
+
+        res = np.any(P[:, idx], axis=1)
+        P[res, res] = 1
