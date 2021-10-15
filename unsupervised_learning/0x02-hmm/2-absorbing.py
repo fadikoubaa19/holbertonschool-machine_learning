@@ -15,15 +15,15 @@ def absorbing(P):
         return None
 
     # P[i, j] is the probability of transitioning:
-    shape = np.diag(P)
-    if (shape == 1).all():
+    shap = np.diag(P)
+    if (shap == 1).all():
         return True
     # if shape = 1 return false:
-    if not(shape == 1).any():
+    if not(shap == 1).any():
         return False
 
     # the proba of trans P[i,j]:
-    if (shape == 1).any():
+    if (shap == 1).any():
         for i in range(P.shape[0]):
             for j in range(P.shape[0]):
 
