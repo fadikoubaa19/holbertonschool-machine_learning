@@ -10,25 +10,24 @@ def absorbing(P):
     function absorbing: param: p:
     """
 
-    # P is a is a square 2D numpy.ndarray:
-    if type(P) != np.ndarray:
+    if type(P) is not np.ndarray or len(P.shape) != 2:
+        return False
+    if np.sum(P, axis=1).all() != 1:
         return None
-
-    # P[i, j] is the probability of transitioning:
-    shap = np.diag(P)
+    n = P.shape[0]
+    if n != P.shape[1]:
+        return False
+    shap = np.shap(P)
     if (shap == 1).all():
         return True
-    # if shape = 1 return false:
-    if not(shap == 1).any():
+    land = np.where(shap == 1)
+    if len(land[0]) == 0:
         return False
-
-    # the proba of trans P[i,j]:
-    if (shap == 1).any():
-        for i in range(P.shape[0]):
-            for j in range(P.shape[0]):
-
-                # Returns: True if it is absorbing, or False on failure
-                if i == j and i + 1 < len(P):
-                    if P[i + 1][j] == 0 and P[i][j + 1] == 0:
-                        return False
-    return True
+    res = shap == 1
+    for i in range(n):
+        for j in range(n):
+            if P[i][j] > 0 and res[j]:
+                res[i] = 1
+    if res.all() == 1:
+        return True
+    return False
