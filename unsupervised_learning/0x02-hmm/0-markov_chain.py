@@ -16,7 +16,7 @@ def markov_chain(P, s, t=1):
         return None
     if type(t) is not int or t < 0:
         return None
-    #represent the prob
+    # represent the prob
     for j in range(0, t):
         s = np.matmul(s, P)
     return s
