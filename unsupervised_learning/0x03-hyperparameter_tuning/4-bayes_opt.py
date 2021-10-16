@@ -21,7 +21,7 @@ class BayesianOptimization:
         self.gp = GP(X_init, Y_init, l=l, sigma_f=sigma_f)
 
     def acquisition(self):
-        """Calculate next best sample location"""
+        """function acuiqs"""
         rgb, _ = self.gp.predict(self.gp.X)
         delta, numt = self.gp.predict(self.X_s)
         plts = np.min(rgb)
