@@ -23,11 +23,19 @@ class BayesianOptimization:
     def acquisition(self):
         """function acuiqs"""
         rgb, _ = self.gp.predict(self.gp.X)
+
         delta, numt = self.gp.predict(self.X_s)
+
         plts = np.min(rgb)
+
         rsn = plts - delta - self.xsi
+
         if not self.minimize:
+
             rs = -rsn
-        cr = rsn / nums
-        rslt = rsn * norm.cdf(cr) + nums * norm.pdf(cr)
+
+        Z = rsn / nums
+
+        rslt = rsn * norm.cdf(Z) + nums * norm.pdf(Z)
+
         return self.X_s[np.argmax(rslt)], rslt
