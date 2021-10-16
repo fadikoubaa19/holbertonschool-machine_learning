@@ -40,7 +40,6 @@ class GaussianProcess:
         cd_s = ls_s.diagonal()
         return nud_s.reshape(-1), cd_s
 
-
     def update(self, X_new, Y_new):
         """
         function update
