@@ -23,8 +23,12 @@ def semantic_search(corpus_path, sentence):
 
     #embedding the link of doc
     embeddings = link(document)
-
+    
+    
+    # returns the sum product 
     sl = np.inner(embeddings, embeddings)
+    
+    # Returns the indices of the maximum values along an axis
     ex = np.argmax(sl[0, 1:])
 
     return document[ex + 1]
