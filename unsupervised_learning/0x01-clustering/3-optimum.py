@@ -7,7 +7,7 @@ variance = __import__('2-variance').variance
 
 def optimum_k(X, kmin=1, kmax=None, iterations=1000):
     """
-    function optimum:parm:x,kmin,kmax,iterations:
+    function optimum:tests for the optimum number of clusters by variance:parm:x,kmin,kmax,iterations:
     """
     if type(X) is not np.ndarray or len(X.shape) != 2:
         return None, None
