@@ -34,15 +34,29 @@ def question_answer(question, reference):
     input_type_ids = [0] * (1 + len(question_tokens) + 1) +\
         [1] * (len(paragraph_tokens) + 1)
 
+    
+    # Specifies the dimension index at which to expand the shape
+    # By using tf.convert_to tensor the objects are transformed to tensor:
     input_word_ids, input_mask, input_type_ids = map(lambda t: tf.expand_dims(
         tf.convert_to_tensor(t, dtype=tf.int32), 0),
                              (input_word_ids, input_mask, input_type_ids))
     outputs = model([input_word_ids,
                     input_mask, input_type_ids])
+    
+    # Find the maximum value of short_start:
+    # Find the maximum of value of short_end:
     short_start = tf.argmax(outputs[0][0][1:]) + 1
     short_end = tf.argmax(outputs[1][0][1:]) + 1
+    
+    # answer is the out of voccabulary:
     answer_tokens = tokens[short_start: short_end + 1]
+    
+    # Convert answer to strings:
     answer = tokenizer.convert_tokens_to_string(answer_tokens)
+    
+    # in case the answer is empty return none:
     if answer == "":
         return None
+    
+    # return the answer.
     return answer
