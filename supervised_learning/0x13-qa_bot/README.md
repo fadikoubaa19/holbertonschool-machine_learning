@@ -19,10 +19,14 @@
    <br>3- inculde related content
    <br>4- optimize the content
   <br> 5- include structured data in your content
+   <br> based on 2-qa task , icreated a function that answers from many texts by using 
   
   <h2><center> Libraries: </center></h2>
   
   * In this project i used 3 libraries:
   <br>-Tenserflow: is an open source library made by google , that train models, serve prediction and refine future result.
   <br>-Tenserflow-hub: is a library that provide many pre-trained models like: words embedding and classifications.
+  <br>-OS : a library that write and read files.
+  <br>- BertTokenizr: is a library that break the words into fragements.
+  <br>-Numpy: is open source library we use it to prefrom a mathematical operations on arrays
   
