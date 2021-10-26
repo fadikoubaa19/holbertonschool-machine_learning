@@ -24,5 +24,5 @@
   
   * In this project i used 3 libraries:
   <br>-Tenserflow: is an open source library made by google , that train models, serve prediction and refine future result.
-  <br>-Tenserflow-hub: is a library that provide many pre-trained models like: words embedding
+  <br>-Tenserflow-hub: is a library that provide many pre-trained models like: words embedding and classifications.
   
