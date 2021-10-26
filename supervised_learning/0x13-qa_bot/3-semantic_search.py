@@ -17,11 +17,11 @@ def semantic_search(corpus_path, sentence):
             continue
         with open(corpus_path + '/' + i, 'r', encoding='utf-8') as file:
             document.append(file.read())
-    #Load the link.
+    # Load the link.
     link = hub.load(
         'https://tfhub.dev/google/universal-sentence-encoder-large/5')
 
-    #embedding the link of doc
+    # embedding the link of doc
     embeddings = link(document)
     
     
