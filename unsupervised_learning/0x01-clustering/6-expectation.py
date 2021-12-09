@@ -6,7 +6,7 @@ pdf = __import__('5-pdf').pdf
 
 def expectation(X, pi, m, S):
     """
-    function expectation: param: x,pu,m,s
+    function expectation: :calculates the probability density function of a Gaussian distributionparam: x,pu,m,s
     """
     if type(X) is not np.ndarray or len(X.shape) != 2:
         return None, None

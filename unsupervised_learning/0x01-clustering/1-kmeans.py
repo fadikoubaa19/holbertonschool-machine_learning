@@ -28,6 +28,8 @@ def kmeans(X, k, iterations=1000):
                 vari[j] = np.random.uniform(min, max, size=(1, d))
             else:
                 vari[j] = (X[init == j].mean(axis=0))
+                
+        # calculate one of the eight different matrix norms or vector norms:
         ins = np.linalg.norm((X - vari[:, np.newaxis]), axis=2)
         init = ins.argmin(axis=0)
         if (copy == vari).all():
