@@ -15,3 +15,9 @@ Task2:
 <br>a1=env.observation_space.n
 <br>Please for more informations about OpenAI check this:https://leechangyo.github.io/reinforcement%20learning/2019/10/03/OpenAI-Gym-Tutorial/
 <br>in the end i returned the Q_tables filled with zeros using numpy(np.zeros).
+
+Task3:
+in this task i create function that uses epsilon to determine the next action for agent
+<br> so as first step i needed to know if i will explore or exploite by using numpy (np.uniform.random)
+<br> Then i used again numpy(numpy.random.randint) to explore it.
+<br> in the end i returned the maximum element of the next move using (np.argmax)
