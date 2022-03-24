@@ -21,3 +21,10 @@ in this task i create function that uses epsilon to determine the next action fo
 <br> so as first step i needed to know if i will explore or exploite by using numpy (np.uniform.random)
 <br> Then i used again numpy(numpy.random.randint) to explore it.
 <br> in the end i returned the maximum element of the next move using (np.argmax)
+
+Task4:
+<br> In this task i create function that train the play of agent in map named frozen lake
+<br> i used Gym libraray:
+<br> env.rest == that reset the envirement to the initial stat
+<br> env.render == that render the action in every step
+<br>env.step == that take a step in each action and return 4 param:()
