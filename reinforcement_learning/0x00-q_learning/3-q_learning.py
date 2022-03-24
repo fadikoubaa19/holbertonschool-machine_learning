@@ -47,7 +47,7 @@ def train(env, Q, episodes=5000, max_steps=100, alpha=0.1,
         total_rewards.append(reward)
 
     # Print a simple message
-    print("\U0001f600", "Hi this is a Function that preforms Q-learning:")
+    print("\U0001f600", "Hi")
 
     # Return the total rewards claimed from the agent
     # Retrun the updated Q-table
