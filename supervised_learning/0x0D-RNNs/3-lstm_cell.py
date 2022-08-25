@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Creates the class LSTMCell
+3-lstm_cell.py
 """
 import numpy as np
 
@@ -55,6 +55,8 @@ class LSTMCell:
 
         # Return the matrice product of ab:
         ab = np.matmul(conc1, self.Wo) + self.bo
+
+        # calca ab exp:
         ab = 1 / (1 + np.exp(-ab))
 
         # c_next is the next cell state:
