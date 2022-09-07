@@ -19,7 +19,8 @@ def availableShips(passengerCount):
                 if int(ship['passengers']) >= passengerCount:
                     ships.append(ship['name'])
             except ValueError:
-                if ship['name'] == 'Executor' and passengerCount <= 279144:
+                if ship['name'] == 'Executor' and ((passengerCount <= 279144)
+                   or (PassengerCount < 279144)):
                     ships.append('Executor')
 
         url = data['next']
