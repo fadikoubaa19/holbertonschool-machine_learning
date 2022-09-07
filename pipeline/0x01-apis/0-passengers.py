@@ -20,7 +20,7 @@ def availableShips(passengerCount):
                     ships.append(ship['name'])
             except ValueError:
                 if ship['name'] == 'Death Star' and ((passengerCount == 99999)
-                   or (passengerCount < 99999)):
+                   and (passengerCount < 99999)):
                     ships.append('Death Star')
 
         url = data['next']
